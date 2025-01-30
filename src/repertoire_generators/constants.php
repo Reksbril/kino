@@ -2,6 +2,7 @@
 
 $MAX_REPERTOIRE_CACHE_KEEP_TIME_SECONDS = 24 * 60 * 60; // 24 hours
 $DB_FILE_NAME = "/var/databases/kino-app/cached_webpages.sqlite";
+$POSTERS_DIR = "/var/www/html/posters";
 
 $dayNumberToName = [
     0 => "Niedziela",

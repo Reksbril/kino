@@ -22,4 +22,4 @@
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
 
-src/posters/
+build/

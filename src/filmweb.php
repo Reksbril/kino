@@ -1,5 +1,7 @@
 <?php
 
+include "repertoire_generators/constants.php";
+
 function search_on_filmweb(string $movieName)
 {
     $movieNameUrl = urlencode($movieName);
@@ -131,7 +133,9 @@ function get_poster_from_html($html)
 
 function get_poster(string $movieName)
 {
-    $outputLocation = "posters/$movieName.jpg";
+    global $POSTERS_DIR;
+
+    $outputLocation = "$POSTERS_DIR/$movieName.jpg";
     if (file_exists($outputLocation)) {
         return;
     }
