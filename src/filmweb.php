@@ -135,6 +135,10 @@ function get_poster(string $movieName)
 {
     global $POSTERS_DIR;
 
+    if (!is_dir($POSTERS_DIR)) {
+        mkdir($POSTERS_DIR);
+    }
+
     $outputLocation = "$POSTERS_DIR/$movieName.jpg";
     if (file_exists($outputLocation)) {
         return;
