@@ -7,5 +7,6 @@ class RepertoireItem
         public string $title,
         public string $location,
         public string $ticketLink,
+        public string $locationLink,
     ) {}
 }

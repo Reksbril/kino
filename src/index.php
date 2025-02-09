@@ -37,6 +37,7 @@ foreach ($generator as $item) {
         "ticketLink" => $item->ticketLink,
         "location" => $item->location,
         "filmwebLink" => $filmwebLink,
+        "locationLink" => $item->locationLink,
     ];
 
     get_poster($item->title);

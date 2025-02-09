@@ -44,6 +44,13 @@ function mikro_generator($html)
         $time = $xpath->query('.//p[contains(@class, "repertoire-item-hour")]', $section)->item(0)->nodeValue ?? '';
         $title = $xpath->query('.//a[contains(@class, "repertoire-item-title")]', $section)->item(1)->nodeValue ?? '';
         $location = $xpath->query('.//p[contains(@class, "repertoire-item-location")]', $section)->item(0)->nodeValue ?? '';
+        if ($location === "Sala Mikro" || $location == "Sala Mikrofala") {
+            $location = "Kino Mikro";
+        } else {
+            $location = "Kino Mikro - Galeria Bronowice";
+        }
+
+
         $ticketLink = $xpath->query('.//a[contains(@class, "repertoire-item-button")]', $section)->item(0)->getAttribute('href') ?? '';
 
         $timePieces = explode(":", $time);
@@ -61,6 +68,7 @@ function mikro_generator($html)
             title: trim($title),
             location: trim($location),
             ticketLink: $MIKRO_BASE_ADDRESS . trim($ticketLink),
+            locationLink: $MIKRO_BASE_ADDRESS,
         );
 
         yield $result;

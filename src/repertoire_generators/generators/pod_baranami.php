@@ -1,8 +1,11 @@
 <?php
 
+$POD_BARANAMI_ADDRESS = "https://www.kinopodbaranami.pl/";
+
 function pod_baranami_generator($html)
 {
     global $monthNameToNumber;
+    global $POD_BARANAMI_ADDRESS;
 
     // Load the HTML into DOMDocument
     $dom = new DOMDocument;
@@ -104,6 +107,7 @@ function pod_baranami_generator($html)
                     title: trim($title),
                     location: trim($location),
                     ticketLink: $ticketLink,
+                    locationLink: $POD_BARANAMI_ADDRESS,
                 );
             }
         }

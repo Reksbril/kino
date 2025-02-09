@@ -1,5 +1,23 @@
 <?php
 
+$KIKA_WEBPAGE = "https://www.kinokika.pl/";
+$AGRAFKA_WEBPAGE = "https://www.kinoagrafka.pl/";
+
+function get_location_link($location)
+{
+    global $KIKA_WEBPAGE;
+    global $AGRAFKA_WEBPAGE;
+
+    if (strcmp($location, "Kino KIKA") == 0) {
+        return $KIKA_WEBPAGE;
+    } elseif (strcmp($location, "Kino Agrafka") == 0) {
+        return $AGRAFKA_WEBPAGE;
+    } else {
+        echo "Error: cinema '$location' not listed for KIKA\n";
+        die();
+    }
+}
+
 function kika_generator($html)
 {
     global $monthNameToNumber;
@@ -65,7 +83,7 @@ function kika_generator($html)
             $timeLocation = $timeLocationQuery->item(0)->nodeValue; // "Kino Agrafka, Krowoderska 8 Agrafka niedziela, 15 września 2024 godz. 17:30"
             $timeLocationParts = explode(",", $timeLocation);
 
-            $location = $timeLocationParts[0];
+            $location = trim($timeLocationParts[0]);
 
             $dateTime = trim($timeLocationParts[2]); // "15 września 2024 godz. 17:30"
             $dateTimeParts = explode(" ", $dateTime);
@@ -95,6 +113,7 @@ function kika_generator($html)
                 title: trim($title),
                 location: $location,
                 ticketLink: $ticketLink,
+                locationLink: get_location_link($location),
             );
         }
     }
