@@ -1,0 +1,1 @@
+- poprawić plakaty - nie zawsze pasują, czasem nie ma w ogóle

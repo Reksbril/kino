@@ -2,17 +2,16 @@
 
 include "webpage.php";
 include "repertoire_generators/constants.php";
-include "repertoire_generators/generators.php";
-include "filmweb.php";
+include "repertoire_generators/repertoire_list.php";
 
 
 
-$generator = get_generator();
+$repertoire_list = get_repertoire_list();
 
 $repertoire = [];
 $currentTimestamp = time();
 
-foreach ($generator as $item) {
+foreach ($repertoire_list as $item) {
     $itemTimestamp = $item->timestamp;
 
     if ($itemTimestamp < $currentTimestamp) {

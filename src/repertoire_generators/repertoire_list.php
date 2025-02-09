@@ -1,11 +1,12 @@
 <?php
 
-include "db_utils.php";
 include "repertoire_item.php";
+include "postprocess.php";
 
 include "generators/pod_baranami.php";
 include "generators/mikro.php";
 include "generators/kika.php";
+
 
 enum Cinema: string
 {
@@ -125,4 +126,11 @@ function get_generator()
         pod_baranami_generator($html_pod_baranami),
         kika_generator($html_kika),
     );
+}
+
+
+function get_repertoire_list()
+{
+    $generator = get_generator();
+    return postprocess($generator);
 }
