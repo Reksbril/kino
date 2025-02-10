@@ -1,0 +1,6 @@
+services:
+  main:
+    container_name: main
+    image: ghcr.io/reksbril/cinema-prod:latest
+    ports:
+      - 80:80

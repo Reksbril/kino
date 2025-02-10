@@ -5,9 +5,7 @@ start-dev: build-dev
 	kino-app-dev 
 
 start-prod:	build-prod
-	docker run \
-	-p 80:80 \
-	-it kino-app-prod
+	docker compose up
 
 build-dev:
 	docker build --build-arg BUILD_TYPE=development -t kino-app-dev .
@@ -22,3 +20,4 @@ build-dev:
 
 build-prod:
 	docker build --build-arg BUILD_TYPE=production -t kino-app-prod .
+	docker tag kino-app-prod ghcr.io/reksbril/cinema-prod:latest
