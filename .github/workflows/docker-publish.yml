@@ -1,3 +1,4 @@
+# Source: https://www.programonaut.com/how-to-deploy-a-docker-image-to-a-server-using-github-actions/
 # Requirements
 # - variables
 #   - SSH_PRIVATE_KEY: content of the private key file
