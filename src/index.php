@@ -28,7 +28,12 @@ foreach ($repertoire_list as $item) {
         $repertoire[$itemDateString] = [];
     }
 
-    $filmwebLink = 'https://www.filmweb.pl/search#/?query=' . urlencode($item->title);
+    $movieId = get_movie_id_from_name($item->title);
+    if ($movieId == null) {
+        $filmwebLink = "";
+    } else {
+        $filmwebLink = get_webpage_link_by_id($movieId);
+    }
 
     $repertoire[$itemDateString][] = [
         "time" => date("G:i", $itemTimestamp),
