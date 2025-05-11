@@ -22,7 +22,7 @@ env:
 jobs:
     publish:
         name: publish image
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04-arm
 
         steps:
         - uses: actions/checkout@v3
@@ -34,22 +34,22 @@ jobs:
             docker build . --tag ghcr.io/reksbril/cinema-prod:latest
             docker push ghcr.io/reksbril/cinema-prod:latest
 
-    deploy:
-        needs: publish
-        name: deploy image
-        runs-on: ubuntu-latest
+    # deploy:
+    #     needs: publish
+    #     name: deploy image
+    #     runs-on: ubuntu-24.04-arm
 
-        steps:
-        - name: install ssh keys
-          # check this thread to understand why its needed:
-          # <https://stackoverflow.com/a/70447517>
-          run: |
-            install -m 600 -D /dev/null ~/.ssh/id_rsa
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-            ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-        - name: connect and docker login
-          run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo ${{ secrets.PAT }} | docker login ghcr.io -u reksbril --password-stdin && exit"
-        - name: connect and pull
-          run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && docker compose pull && docker compose up -d && exit"
-        - name: cleanup
-          run: rm -rf ~/.ssh
+    #     steps:
+    #     - name: install ssh keys
+    #       # check this thread to understand why its needed:
+    #       # <https://stackoverflow.com/a/70447517>
+    #       run: |
+    #         install -m 600 -D /dev/null ~/.ssh/id_rsa
+    #         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+    #         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+    #     - name: connect and docker login
+    #       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo ${{ secrets.PAT }} | docker login ghcr.io -u reksbril --password-stdin && exit"
+    #     - name: connect and pull
+    #       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && docker compose pull && docker compose up -d && exit"
+    #     - name: cleanup
+    #       run: rm -rf ~/.ssh

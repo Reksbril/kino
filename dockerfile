@@ -1,4 +1,4 @@
-FROM arm64v8/php:8.3-alpine3.21
+FROM arm64v8/httpd:latest
 
 ARG BUILD_TYPE="production"
 
