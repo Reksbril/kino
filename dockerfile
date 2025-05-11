@@ -1,4 +1,4 @@
-FROM arm64v8/httpd:latest
+FROM arm64v8/php:apache
 
 ARG BUILD_TYPE="production"
 
@@ -22,5 +22,3 @@ RUN mkdir -p /var/www/html/posters && \
     chmod -R u+w /var/www/html/posters  
 
 RUN mv "$PHP_INI_DIR/php.ini-$BUILD_TYPE" "$PHP_INI_DIR/php.ini"
-
-
